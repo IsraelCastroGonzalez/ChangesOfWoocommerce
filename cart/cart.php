@@ -79,7 +79,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 						echo wc_get_formatted_cart_item_data( $cart_item ); // PHPCS: XSS ok.
 						// Backorder notification.
 						if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) ) {
-							echo '<p class="backorder_notification">' . esc_html__( 'Available on backorder', 'woocommerce' ) . '</p>';
+							echo wp_kses_post( apply_filters( 'woocommerce_cart_item_backorder_notification', '<p class="backorder_notification">' . esc_html__( 'Available on backorder', 'woocommerce' ) . '</p>' ) );
 						}
 						?>
 						</td>
